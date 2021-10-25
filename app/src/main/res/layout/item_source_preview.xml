@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/top"
         android:layout_margin="@dimen/margin_layout"
-        android:background="@drawable/card_view_border"
         android:orientation="horizontal">
 
         <CheckBox
@@ -24,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_view"
             android:text="@string/article_source"
-            android:textAppearance="@style/TextAppearance.Body.Fresh" />
+            android:textAppearance="@style/TextAppearance.Body.Medium" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

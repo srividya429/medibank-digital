@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medibank.shop.R
 import com.medibank.shop.adapters.NewsAppAdapter
+import com.medibank.shop.adapters.NewsSourceAdapter
 import com.medibank.shop.ui.NewsAppActivity
 import com.medibank.shop.ui.NewsAppViewModel
 import com.medibank.shop.utils.Constants
@@ -16,14 +17,11 @@ import com.medibank.shop.utils.EndlessScrollListener
 import com.medibank.shop.utils.Resource
 import kotlinx.android.synthetic.main.fragment_source_news.*
 
-/* Still in developing stage
-* NewsApi for getting sources list and updating the same in
-* SourceNewsFragment is in progress
-* */
 class SourceNewsFragment : Fragment(R.layout.fragment_source_news) {
 
     lateinit var viewModel: NewsAppViewModel
-    lateinit var newsAdapter: NewsAppAdapter
+//    lateinit var newsAdapter: NewsAppAdapter
+    lateinit var newsAdapter: NewsSourceAdapter
 
     // Pagination
     var isLoading = false
@@ -42,7 +40,9 @@ class SourceNewsFragment : Fragment(R.layout.fragment_source_news) {
                 bundle
             )
         }
-        viewModel.sourceNews.observe(viewLifecycleOwner, Observer { response ->
+
+//        viewModel.sourceNews.observe(viewLifecycleOwner, Observer { response ->
+        viewModel.headlineNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
@@ -50,7 +50,7 @@ class SourceNewsFragment : Fragment(R.layout.fragment_source_news) {
                         newsAdapter.differ.submitList(newsResponse?.articles?.toList())
                         val totalPagesResult =
                             newsResponse!!.totalResults / Constants.QUERY_PAGE_SIZE + 2
-                        isLastPage = viewModel.sourceNewsPage == totalPagesResult
+                        isLastPage = viewModel.topHeadLinesPage == totalPagesResult
                         if (isLastPage) {
                             rvSourceNews.setPadding(0, 0, 0, 0)
                         }
@@ -80,7 +80,7 @@ class SourceNewsFragment : Fragment(R.layout.fragment_source_news) {
     }
 
     private fun setUpRecyclerView() {
-        newsAdapter = NewsAppAdapter()
+        newsAdapter = NewsSourceAdapter()
         rvSourceNews.setHasFixedSize(true)
         rvSourceNews.apply {
             adapter = newsAdapter

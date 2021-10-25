@@ -6,10 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.medibank.shop.R
 import com.medibank.shop.data.Article
-import kotlinx.android.synthetic.main.item_article_preview.view.*
+import kotlinx.android.synthetic.main.item_source_preview.view.*
 
 class NewsSourceAdapter: RecyclerView.Adapter<NewsSourceAdapter.ViewHolder>() {
 
@@ -45,7 +44,7 @@ class NewsSourceAdapter: RecyclerView.Adapter<NewsSourceAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = differ.currentList[position]
         holder.itemView.apply {
-            tvArticleSource.text = article.source?.name
+            tvSource.text = article.source?.name
             setOnClickListener {
                 onItemClickListener?.let { it(article) }
             }
