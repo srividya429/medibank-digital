@@ -17,9 +17,11 @@ import com.medibank.shop.utils.Resource
 import kotlinx.android.synthetic.main.fragment_headline_news.*
 
 class HeadlinesFragment : Fragment(R.layout.fragment_headline_news) {
+
     lateinit var viewModel: NewsAppViewModel
     lateinit var newsAdapter: NewsAppAdapter
 
+    // Pagination
     var isLoading = false
     var isLastPage = false
 

@@ -23,7 +23,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
             loadUrl(article.url)
         }
 
-        fabSaved.setOnClickListener {
+        fabSave.setOnClickListener {
             viewModel.saveArticle(article)
             Snackbar.make(view, "Article saved ", Snackbar.LENGTH_SHORT).show()
         }

@@ -16,6 +16,7 @@ import com.medibank.shop.ui.NewsAppViewModel
 import kotlinx.android.synthetic.main.fragment_saved_news.*
 
 class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
+
     lateinit var viewModel: NewsAppViewModel
     lateinit var newsAdapter: NewsAppAdapter
 

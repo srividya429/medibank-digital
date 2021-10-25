@@ -21,6 +21,10 @@ class SourceNewsFragment : Fragment(R.layout.fragment_source_news) {
     lateinit var viewModel: NewsAppViewModel
     lateinit var newsAdapter: NewsAppAdapter
 
+    // Pagination
+    var isLoading = false
+    var isLastPage = false
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as NewsAppActivity).viewModel
@@ -60,10 +64,6 @@ class SourceNewsFragment : Fragment(R.layout.fragment_source_news) {
             }
         })
     }
-
-    //Add Pagination
-    var isLoading = false
-    var isLastPage = false
 
     private fun hideProgressBar() {
         paginationProgressBar.visibility = View.INVISIBLE
