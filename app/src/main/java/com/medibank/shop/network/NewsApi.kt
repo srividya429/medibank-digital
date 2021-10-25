@@ -27,4 +27,13 @@ interface NewsApi {
         @Query("apiKey")
         apiKey: String = API_KEY
     ): Response<NewsResponse>
+
+    /* Getting source list Still in progress */
+    @GET("v2/top-headlines/sources")
+    suspend fun getSources(
+        @Query("page")
+        pageNumber: Int = 1,
+        @Query("apiKey")
+        apiKey: String = API_KEY
+    ): Response<NewsResponse>
 }

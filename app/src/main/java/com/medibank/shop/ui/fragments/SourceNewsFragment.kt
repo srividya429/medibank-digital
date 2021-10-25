@@ -16,6 +16,10 @@ import com.medibank.shop.utils.EndlessScrollListener
 import com.medibank.shop.utils.Resource
 import kotlinx.android.synthetic.main.fragment_source_news.*
 
+/* Still in developing stage
+* NewsApi for getting sources list and updating the same in
+* SourceNewsFragment is in progress
+* */
 class SourceNewsFragment : Fragment(R.layout.fragment_source_news) {
 
     lateinit var viewModel: NewsAppViewModel
