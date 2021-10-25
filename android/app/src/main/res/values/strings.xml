@@ -1,0 +1,16 @@
+<resources>
+    <!--    <string name="app_name">My Beautiful Shop</string>-->
+    <string name="app_name">Articles Headlines App</string>
+
+    <string name="headlines">Headlines</string>
+    <string name="saved">Saved News</string>
+    <string name="sources">Sources</string>
+
+    <!-- Article -->
+    <string name="article_source">Source</string>
+    <string name="article_title">Title</string>
+    <string name="article_description">Description</string>
+    <string name="article_author_colon">Author: </string>
+    <string name="article_author">Author</string>
+
+</resources>
