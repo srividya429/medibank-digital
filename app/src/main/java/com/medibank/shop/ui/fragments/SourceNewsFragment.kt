@@ -5,10 +5,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medibank.shop.R
-import com.medibank.shop.adapters.NewsAppAdapter
 import com.medibank.shop.adapters.NewsSourceAdapter
 import com.medibank.shop.ui.NewsAppActivity
 import com.medibank.shop.ui.NewsAppViewModel
@@ -31,23 +29,28 @@ class SourceNewsFragment : Fragment(R.layout.fragment_source_news) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as NewsAppActivity).viewModel
         setUpRecyclerView()
-        newsAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply {
-                putSerializable("article", it)
-            }
-            findNavController().navigate(
-                R.id.action_sourceNewsFragment_to_articlesFragment,
-                bundle
-            )
-        }
+//        newsAdapter.setOnItemClickListener {
+//            val bundle = Bundle().apply {
+//                putSerializable("article", it)
+//            }
+//            findNavController().navigate(
+//                R.id.action_sourceNewsFragment_to_articlesFragment,
+//                bundle
+//            )
+//        }
 
-//        viewModel.sourceNews.observe(viewLifecycleOwner, Observer { response ->
         viewModel.headlineNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data.let { newsResponse ->
-                        newsAdapter.differ.submitList(newsResponse?.articles?.toList())
+                        val sourcesList = mutableSetOf<String>()
+                        newsResponse?.articles?.forEach { item ->
+                            sourcesList.add(item.source?.name.toString())
+                        }
+
+                        newsAdapter.updateSources(sourcesList)
+
                         val totalPagesResult =
                             newsResponse!!.totalResults / Constants.QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.topHeadLinesPage == totalPagesResult

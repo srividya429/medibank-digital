@@ -3,28 +3,19 @@ package com.medibank.shop.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.medibank.shop.R
-import com.medibank.shop.data.Article
 import kotlinx.android.synthetic.main.item_source_preview.view.*
 
-class NewsSourceAdapter: RecyclerView.Adapter<NewsSourceAdapter.ViewHolder>() {
+class NewsSourceAdapter : RecyclerView.Adapter<NewsSourceAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    private val differCallback = object : DiffUtil.ItemCallback<Article>() {
-        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.url == newItem.url
-        }
+    lateinit var sources: List<String>
 
-        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem == newItem
-        }
+    fun updateSources(sourcesList: MutableSet<String>) {
+        sources = sourcesList.toList()
     }
-
-    val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -37,21 +28,13 @@ class NewsSourceAdapter: RecyclerView.Adapter<NewsSourceAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return differ.currentList.size
+        return sources.size
     }
 
-    private var onItemClickListener: ((Article) -> Unit)? = null
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val article = differ.currentList[position]
+        val source = sources[position]
         holder.itemView.apply {
-            tvSource.text = article.source?.name
-            setOnClickListener {
-                onItemClickListener?.let { it(article) }
-            }
+            tvSource.text = source
         }
-    }
-
-    fun setOnItemClickListener(listener: (Article) -> Unit) {
-        onItemClickListener = listener
     }
 }
