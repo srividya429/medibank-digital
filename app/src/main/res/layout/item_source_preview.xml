@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_view"
             android:text="@string/article_source"
-            android:textAppearance="@style/TextAppearance.Body.Medium" />
+            android:textAppearance="@style/TextAppearance.Headline.Fresh" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
