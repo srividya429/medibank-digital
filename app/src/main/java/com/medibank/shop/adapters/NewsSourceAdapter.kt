@@ -3,6 +3,7 @@ package com.medibank.shop.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.medibank.shop.R
 import kotlinx.android.synthetic.main.item_source_preview.view.*
@@ -35,6 +36,13 @@ class NewsSourceAdapter : RecyclerView.Adapter<NewsSourceAdapter.ViewHolder>() {
         val source = sources[position]
         holder.itemView.apply {
             tvSource.text = source
+            cbSource.setOnCheckedChangeListener { checkbox, isChecked ->
+                if (checkbox.isChecked) {
+                    Toast.makeText(context,"Checked $position", Toast.LENGTH_SHORT).show()
+                }else{
+                    Toast.makeText(context,"UnChecked $position", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }
